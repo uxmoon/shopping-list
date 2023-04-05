@@ -18,7 +18,8 @@ function onSubmit(e) {
   li.appendChild(document.createTextNode(newItem))
   const button = createButton()
   li.appendChild(button)
-  // console.log(li)
+  list.appendChild(li)
+  inputAdd.value = ''
 }
 
 function createButton() {

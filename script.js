@@ -2,6 +2,7 @@ const form = document.getElementById('item-form')
 const inputAdd = document.getElementById('item-input')
 const list = document.getElementById('item-list')
 const btnClear = document.getElementById('clear')
+const itemsFilter = document.getElementById('filter')
 
 function onSubmit(e) {
   e.preventDefault()
@@ -19,7 +20,10 @@ function onSubmit(e) {
   li.appendChild(document.createTextNode(newItem))
   const button = createButton()
   li.appendChild(button)
+
+  // add item to list
   list.appendChild(li)
+  checkEmptyList()
   inputAdd.value = ''
 }
 
@@ -35,6 +39,17 @@ function removeItem(e) {
   }
 }
 
+function checkEmptyList() {
+  const items = document.querySelectorAll('li')
+  if (items.length === 0) {
+    btnClear.style.display = 'none'
+    itemsFilter.style.display = 'none'
+  } else {
+    btnClear.style.display = 'block'
+    itemsFilter.style.display = 'block'
+  }
+}
+
 function clearItems() {
   while (list.firstChild) {
     list.firstChild.remove()
@@ -44,3 +59,5 @@ function clearItems() {
 form.addEventListener('submit', onSubmit)
 list.addEventListener('click', removeItem)
 btnClear.addEventListener('click', clearItems)
+
+checkEmptyList()

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopping List</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <header>
+        <h1>Shopping List</h1>
+      </header>
+      <main>
+        <form id="item-form">
+          <div class="form-control">
+            <input
+              type="text"
+              name="item"
+              id="item-input"
+              class="form-input"
+              placeholder="Enter item"
+            />
+          </div>
+          <div class="form-control">
+            <button type="submit" class="btn">&plus; Add item</button>
+          </div>
+        </form>
+        <div class="filter">
+          <input
+            type="text"
+            id="filter"
+            placeholder="Filter items"
+            class="form-input-filter"
+          />
+        </div>
+        <ul id="item-list" class="items">
+          <li>
+            Apples
+            <button>&times; Remove</button>
+          </li>
+          <li>
+            Eggs
+            <button>&times; Remove</button>
+          </li>
+          <li>
+            Bread
+            <button>&times; Remove</button>
+          </li>
+        </ul>
+        <button id="clear">Clear all</button>
+      </main>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

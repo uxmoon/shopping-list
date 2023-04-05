@@ -78,3 +78,41 @@ select {
   margin-inline: auto;
   padding: 1rem;
 }
+
+ul {
+  list-style: none;
+  margin: 0 0 1.5rem;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.filter {
+  margin-bottom: 1.5rem;
+}
+
+.filter input {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #252525;
+}
+
+form {
+  margin-bottom: 1.5rem;
+}
+
+form input {
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+#clear {
+  width: 100%;
+}

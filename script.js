@@ -34,8 +34,9 @@ function createButton() {
 }
 
 function removeItem(e) {
-  if (e.target.parentElement.classList.contains('list-item')) {
+  if (confirm('Are you sure?')) {
     e.target.parentElement.remove()
+    checkEmptyList()
   }
 }
 
@@ -54,6 +55,7 @@ function clearItems() {
   while (list.firstChild) {
     list.firstChild.remove()
   }
+  checkEmptyList()
 }
 
 form.addEventListener('submit', onSubmit)

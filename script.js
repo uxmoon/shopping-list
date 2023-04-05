@@ -1,6 +1,7 @@
 const form = document.getElementById('item-form')
 const inputAdd = document.getElementById('item-input')
 const list = document.getElementById('item-list')
+const btnClear = document.getElementById('clear')
 
 function onSubmit(e) {
   e.preventDefault()
@@ -28,4 +29,18 @@ function createButton() {
   return button
 }
 
+function removeItem(e) {
+  if (e.target.parentElement.classList.contains('list-item')) {
+    e.target.parentElement.remove()
+  }
+}
+
+function clearItems() {
+  while (list.firstChild) {
+    list.firstChild.remove()
+  }
+}
+
 form.addEventListener('submit', onSubmit)
+list.addEventListener('click', removeItem)
+btnClear.addEventListener('click', clearItems)

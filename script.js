@@ -58,8 +58,28 @@ function clearItems() {
   checkEmptyList()
 }
 
+function filterItems(e) {
+  // get list items
+  const items = document.querySelectorAll('li')
+  // get input value and transform to lowercase
+  const text = e.target.value.toLowerCase()
+
+  items.forEach((item) => {
+    // get item text and transform to lowercase
+    const itemText = item.firstChild.textContent.toLowerCase()
+    // compare text input and list item text, returns true or false
+    if (itemText.indexOf(text) != -1) {
+      // console.log('true')
+      item.style.display = 'flex'
+    } else {
+      // console.log('false')
+      item.style.display = 'none'
+    }
+  })
+}
+
 form.addEventListener('submit', onSubmit)
 list.addEventListener('click', removeItem)
 btnClear.addEventListener('click', clearItems)
-
+itemsFilter.addEventListener('input', filterItems)
 checkEmptyList()

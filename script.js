@@ -9,7 +9,7 @@ let isEditMode = false
 function displayItems() {
   const itemsFromStorage = getItemsFromStorage()
   itemsFromStorage.forEach((item) => addItemToDOM(item))
-  checkEmptyList()
+  resetUI()
 }
 
 function onAddItemSubmit(e) {
@@ -39,7 +39,7 @@ function onAddItemSubmit(e) {
   addItemToStorage(newItem)
 
   // Check if list is empty
-  checkEmptyList()
+  resetUI()
 
   // Clear input text
   inputAdd.value = ''
@@ -104,7 +104,7 @@ function removeItem(item) {
     item.remove()
     // Remove item from localStorage
     removeItemFromStorage(item.firstChild.textContent)
-    checkEmptyList()
+    resetUI()
   }
 }
 
@@ -137,14 +137,15 @@ function clearItems() {
   }
   // Clear from localStorage
   localStorage.removeItem('items')
-  checkEmptyList()
+  resetUI()
 }
 
 /**
  * Show or hide Filter and Clear button
  */
 
-function checkEmptyList() {
+function resetUI() {
+  inputAdd.textContent = ''
   const items = document.querySelectorAll('li')
   if (items.length === 0) {
     btnClear.style.display = 'none'
@@ -153,6 +154,9 @@ function checkEmptyList() {
     btnClear.style.display = 'block'
     itemsFilter.style.display = 'block'
   }
+  formButton.innerHTML = '&plus; Add item'
+  formButton.classList.remove('btn-edit')
+  isEditMode = false
 }
 
 /**
@@ -185,7 +189,7 @@ function init() {
   btnClear.addEventListener('click', clearItems)
   itemsFilter.addEventListener('input', filterItems)
   window.addEventListener('DOMContentLoaded', displayItems)
-  checkEmptyList()
+  resetUI()
 }
 
 init()

@@ -22,6 +22,16 @@ function onAddItemSubmit(e) {
     alert('Please add an item')
     return
   }
+
+  // Check edit mode
+  if (isEditMode) {
+    const itemEdit = list.querySelector('.edit-text')
+    removeItemFromStorage(itemEdit.firstChild.textContent)
+    itemEdit.classList.remove('edit-text')
+    itemEdit.remove()
+    isEditMode = false
+  }
+
   // Create DOM element
   addItemToDOM(newItem)
 

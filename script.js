@@ -1,8 +1,10 @@
 const form = document.getElementById('item-form')
+const formButton = document.querySelector('button')
 const inputAdd = document.getElementById('item-input')
 const list = document.getElementById('item-list')
 const btnClear = document.getElementById('clear')
 const itemsFilter = document.getElementById('filter')
+let isEditMode = false
 
 function displayItems() {
   const itemsFromStorage = getItemsFromStorage()
@@ -81,6 +83,8 @@ function getItemsFromStorage() {
 function onClickItem(e) {
   if (e.target.classList.contains('btn-remove')) {
     removeItem(e.target.parentElement)
+  } else {
+    setItemToEdit(e.target)
   }
 }
 
@@ -102,6 +106,19 @@ function removeItemFromStorage(item) {
 
   // Set new items array to localStorage
   localStorage.setItem('items', JSON.stringify(itemsFromStorage))
+}
+
+function setItemToEdit(item) {
+  // update edit mode
+  isEditMode = true
+  list.querySelectorAll('li').forEach((i) => i.classList.remove('edit-text'))
+  // Set edit styles
+  item.classList.add('edit-text')
+  // Update button text
+  formButton.innerHTML = 'Edit &crarr;'
+  formButton.classList.add('btn-edit')
+  // Set item value in input field
+  inputAdd.value = item.firstChild.textContent
 }
 
 function clearItems() {

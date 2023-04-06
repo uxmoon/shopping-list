@@ -14,8 +14,16 @@ function onAddItemSubmit(e) {
     alert('Please add an item')
     return
   }
+  // Create DOM element
   addItemToDOM(newItem)
+
+  // Add item to localStorage
+  addItemToStorage(newItem)
+
+  // Check if list is empty
   checkEmptyList()
+
+  // Clear input text
   inputAdd.value = ''
 }
 
@@ -28,6 +36,23 @@ function addItemToDOM(item) {
 
   // add item to list
   list.appendChild(li)
+}
+
+function addItemToStorage(item) {
+  let itemsFromStorage
+
+  // Check if localStorage is empty or get array
+  if (localStorage.getItem('items') === null) {
+    itemsFromStorage = []
+  } else {
+    itemsFromStorage = JSON.parse(localStorage.getItem('items'))
+  }
+
+  // Add new item to array
+  itemsFromStorage.push(item)
+
+  // set new item to localStorage
+  localStorage.setItem('items', JSON.stringify(itemsFromStorage))
 }
 
 function createButton() {

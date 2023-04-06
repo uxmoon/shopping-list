@@ -46,6 +46,7 @@ function addItemToDOM(item) {
 
 function createButton() {
   const button = document.createElement('button')
+  button.className = 'btn-remove'
   button.innerHTML = '&times; remove'
   return button
 }
@@ -77,17 +78,38 @@ function getItemsFromStorage() {
  * Remove item/s
  */
 
-function removeItem(e) {
+function onClickItem(e) {
+  if (e.target.classList.contains('btn-remove')) {
+    removeItem(e.target.parentElement)
+  }
+}
+
+function removeItem(item) {
   if (confirm('Are you sure?')) {
-    e.target.parentElement.remove()
+    // Remove item from DOM
+    item.remove()
+    // Remove item from localStorage
+    removeItemFromStorage(item.firstChild.textContent)
     checkEmptyList()
   }
+}
+
+function removeItemFromStorage(item) {
+  let itemsFromStorage = getItemsFromStorage()
+
+  // Filter out selected item
+  itemsFromStorage = itemsFromStorage.filter((i) => i !== item)
+
+  // Set new items array to localStorage
+  localStorage.setItem('items', JSON.stringify(itemsFromStorage))
 }
 
 function clearItems() {
   while (list.firstChild) {
     list.firstChild.remove()
   }
+  // Clear from localStorage
+  localStorage.removeItem('items')
   checkEmptyList()
 }
 
@@ -132,7 +154,7 @@ function filterItems(e) {
 
 function init() {
   form.addEventListener('submit', onAddItemSubmit)
-  list.addEventListener('click', removeItem)
+  list.addEventListener('click', onClickItem)
   btnClear.addEventListener('click', clearItems)
   itemsFilter.addEventListener('input', filterItems)
   window.addEventListener('DOMContentLoaded', displayItems)

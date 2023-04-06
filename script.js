@@ -130,9 +130,13 @@ function filterItems(e) {
   })
 }
 
-form.addEventListener('submit', onAddItemSubmit)
-list.addEventListener('click', removeItem)
-btnClear.addEventListener('click', clearItems)
-itemsFilter.addEventListener('input', filterItems)
-window.addEventListener('DOMContentLoaded', displayItems)
-checkEmptyList()
+function init() {
+  form.addEventListener('submit', onAddItemSubmit)
+  list.addEventListener('click', removeItem)
+  btnClear.addEventListener('click', clearItems)
+  itemsFilter.addEventListener('input', filterItems)
+  window.addEventListener('DOMContentLoaded', displayItems)
+  checkEmptyList()
+}
+
+init()

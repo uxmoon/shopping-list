@@ -4,7 +4,7 @@ const list = document.getElementById('item-list')
 const btnClear = document.getElementById('clear')
 const itemsFilter = document.getElementById('filter')
 
-function onSubmit(e) {
+function onAddItemSubmit(e) {
   e.preventDefault()
 
   const newItem = inputAdd.value
@@ -14,17 +14,20 @@ function onSubmit(e) {
     alert('Please add an item')
     return
   }
+  addItemToDOM(newItem)
+  checkEmptyList()
+  inputAdd.value = ''
+}
 
+function addItemToDOM(item) {
   // Create list item
   const li = document.createElement('li')
-  li.appendChild(document.createTextNode(newItem))
+  li.appendChild(document.createTextNode(item))
   const button = createButton()
   li.appendChild(button)
 
   // add item to list
   list.appendChild(li)
-  checkEmptyList()
-  inputAdd.value = ''
 }
 
 function createButton() {
@@ -78,7 +81,7 @@ function filterItems(e) {
   })
 }
 
-form.addEventListener('submit', onSubmit)
+form.addEventListener('submit', onAddItemSubmit)
 list.addEventListener('click', removeItem)
 btnClear.addEventListener('click', clearItems)
 itemsFilter.addEventListener('input', filterItems)

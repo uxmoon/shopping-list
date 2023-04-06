@@ -4,6 +4,12 @@ const list = document.getElementById('item-list')
 const btnClear = document.getElementById('clear')
 const itemsFilter = document.getElementById('filter')
 
+function displayItems() {
+  const itemsFromStorage = getItemsFromStorage()
+  itemsFromStorage.forEach((item) => addItemToDOM(item))
+  checkEmptyList()
+}
+
 function onAddItemSubmit(e) {
   e.preventDefault()
 
@@ -67,12 +73,27 @@ function getItemsFromStorage() {
   return itemsFromStorage
 }
 
+/**
+ * Remove item/s
+ */
+
 function removeItem(e) {
   if (confirm('Are you sure?')) {
     e.target.parentElement.remove()
     checkEmptyList()
   }
 }
+
+function clearItems() {
+  while (list.firstChild) {
+    list.firstChild.remove()
+  }
+  checkEmptyList()
+}
+
+/**
+ * Show or hide Filter and Clear button
+ */
 
 function checkEmptyList() {
   const items = document.querySelectorAll('li')
@@ -85,12 +106,9 @@ function checkEmptyList() {
   }
 }
 
-function clearItems() {
-  while (list.firstChild) {
-    list.firstChild.remove()
-  }
-  checkEmptyList()
-}
+/**
+ * Filter items
+ */
 
 function filterItems(e) {
   // get list items
@@ -116,4 +134,5 @@ form.addEventListener('submit', onAddItemSubmit)
 list.addEventListener('click', removeItem)
 btnClear.addEventListener('click', clearItems)
 itemsFilter.addEventListener('input', filterItems)
+window.addEventListener('DOMContentLoaded', displayItems)
 checkEmptyList()

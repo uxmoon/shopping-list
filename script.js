@@ -30,6 +30,11 @@ function onAddItemSubmit(e) {
     itemEdit.classList.remove('edit-text')
     itemEdit.remove()
     isEditMode = false
+  } else {
+    if (checkExistingItem(newItem)) {
+      alert('That item already exists')
+      return
+    }
   }
 
   // Create DOM element
@@ -157,6 +162,11 @@ function resetUI() {
   formButton.innerHTML = '&plus; Add item'
   formButton.classList.remove('btn-edit')
   isEditMode = false
+}
+
+function checkExistingItem(item) {
+  const itemsFromStorage = getItemsFromStorage()
+  return itemsFromStorage.includes(item)
 }
 
 /**

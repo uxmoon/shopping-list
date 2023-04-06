@@ -38,15 +38,17 @@ function addItemToDOM(item) {
   list.appendChild(li)
 }
 
-function addItemToStorage(item) {
-  let itemsFromStorage
+function createButton() {
+  const button = document.createElement('button')
+  button.innerHTML = '&times; remove'
+  return button
+}
 
-  // Check if localStorage is empty or get array
-  if (localStorage.getItem('items') === null) {
-    itemsFromStorage = []
-  } else {
-    itemsFromStorage = JSON.parse(localStorage.getItem('items'))
-  }
+/**
+ * LocalStorage
+ */
+function addItemToStorage(item) {
+  const itemsFromStorage = getItemsFromStorage()
 
   // Add new item to array
   itemsFromStorage.push(item)
@@ -55,10 +57,14 @@ function addItemToStorage(item) {
   localStorage.setItem('items', JSON.stringify(itemsFromStorage))
 }
 
-function createButton() {
-  const button = document.createElement('button')
-  button.innerHTML = '&times; remove'
-  return button
+function getItemsFromStorage() {
+  let itemsFromStorage
+  if (localStorage.getItem('items') === null) {
+    itemsFromStorage = []
+  } else {
+    itemsFromStorage = JSON.parse(localStorage.getItem('items'))
+  }
+  return itemsFromStorage
 }
 
 function removeItem(e) {

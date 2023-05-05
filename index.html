@@ -20,17 +20,20 @@
     </header>
     <main>
       <form id="item-form">
-        <input
-          type="text"
-          name="item"
-          id="item-input"
-          class="form-input"
-          placeholder="Enter item"
-        />
+        <fieldset>
+          <input
+            type="text"
+            name="item"
+            id="item-input"
+            class="form-input"
+            placeholder="Write a task..."
+          />
+        </fieldset>
         <button type="submit" class="btn">Add item!</button>
       </form>
-      <div>
-        <input type="text" id="filter" placeholder="Filter items" />
+      <div class="relative filter">
+        <label for="filter">Filter tasks</label>
+        <input type="text" id="filter" />
       </div>
       <ul id="item-list" class="items"></ul>
       <button id="clear">Clear all</button>

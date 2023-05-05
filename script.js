@@ -130,7 +130,7 @@ function setItemToEdit(item) {
   // Set edit styles
   item.classList.add('edit-text')
   // Update button text
-  formButton.innerHTML = 'Edit &crarr;'
+  formButton.innerHTML = 'Edit'
   formButton.classList.add('btn-edit')
   // Set item value in input field
   inputAdd.value = item.firstChild.textContent

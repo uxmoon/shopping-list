@@ -3,9 +3,10 @@
   --color-black: #222222;
   --color-grey: #cccccc;
   --color-white: #ffffff;
-  --color-body: #eeeeee;
+  --color-body: #f9f7ff;
   --color-accent: #6200ee;
-  --color-accent-light: rgb(242, 239, 248);
+  --color-accent-dark: #5400cc;
+  --color-accent-light: #f2eff8;
   --fonts: Roboto, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica,
     Arial, sans-serif;
 }
@@ -93,6 +94,7 @@ h1 {
   text-align: center;
   letter-spacing: 0.25rem;
   text-transform: uppercase;
+  padding: 1rem 0;
 }
 
 main {
@@ -127,16 +129,51 @@ form {
   margin-bottom: 1.5rem;
 }
 
-form input[type='text'] {
-  width: 100%;
-  margin-bottom: 0.5rem;
+fieldset {
+  position: relative;
+  border: none;
+  padding: 0;
+  margin: 0;
 }
 
-div > input {
-  margin-bottom: 1.5rem;
+label {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+input[type='text'] {
   width: 100%;
+  margin-bottom: 1.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-grey);
+  border-radius: 0.25rem;
+}
+
+form input[type='text'] {
   border: none;
   border-bottom: 1px solid var(--color-black);
+  background-color: var(--color-body);
+  margin-bottom: 0.5rem;
+  border-radius: 0;
+}
+
+div > input[type='text'] {
+  padding-top: 0.875rem;
+}
+
+div > label {
+  background-color: var(--color-white);
+  font-size: 0.875rem;
+  top: -8px;
+  left: 8px;
+  padding: 0 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.125rem;
+}
+
+.relative {
+  position: relative;
 }
 
 /* List */
@@ -145,67 +182,100 @@ ul {
   list-style: none;
   margin: 0 0 1.5rem;
   padding: 0;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.border {
+  border: 1px solid var(--color-grey);
 }
 
 li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid var(--color-grey);
-  padding: 0.5rem;
-  margin-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-grey);
+  padding: 0.5rem 1rem;
   cursor: pointer;
+  transition: background-color 0.25s ease-in;
 }
 
-li button {
-  cursor: pointer;
+li:hover {
+  background-color: var(--color-body);
 }
 
-ul + button {
-  width: 100%;
+li:last-child {
+  border: none;
 }
 
 .edit-text {
   color: var(--color-grey);
 }
 
-.btn-edit {
-  background-color: var(--color-black);
-  color: var(--color-white);
-}
+/* Buttons */
 
-button,
-input[type='submit'] {
+button {
+  background-color: var(--color-white);
   border: 1px solid var(--color-accent);
-  background-color: var(--color-accent);
-  color: var(--color-white);
-  padding: 0.5rem 1rem;
-  border-radius: 0.25rem;
+  color: var(--color-accent);
   cursor: pointer;
+  border-radius: 0.25rem;
+  letter-spacing: 0.09rem;
+  padding: 0.5rem 1rem;
   text-transform: uppercase;
-  letter-spacing: 0.09;
-  transition: all 0.25s ease-in;
   filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.1))
     drop-shadow(0 1px 1px rgb(0 0 0 / 0.06));
 }
 
-ul + button,
-li button {
-  background-color: var(--color-white);
-  color: var(--color-accent);
+form button {
+  background-color: var(--color-accent);
   border-color: var(--color-accent);
+  color: var(--color-white);
+}
+
+ul + button {
+  width: 100%;
 }
 
 button:hover,
-button:focus,
-input[type='submit']:hover,
-input[type='submit']:focus {
-  border: 1px solid var(--color-accent);
+button:focus {
+  background-color: var(--color-accent-light);
 }
 
-ul + button:hover,
-ul + button:focus,
-li button:hover,
-li button:focus {
+form button:hover,
+form button:focus {
+  border: 1px solid var(--color-accent-dark);
+  background-color: var(--color-accent-dark);
+}
+
+/* Button ripple effect
+Source: https://codepen.io/finnhvman/pen/jLXKJw */
+
+form button:not(.btn-edit) {
+  background-position: center;
+  transition: background 0.8s;
+}
+
+form button:not(.btn-edit):hover {
+  background: var(--color-accent-dark)
+    radial-gradient(circle, transparent 1%, var(--color-accent-dark) 1%)
+    center/15000%;
+}
+
+form button:not(.btn-edit):active {
   background-color: var(--color-accent-light);
+  background-size: 100%;
+  transition: background 0s;
+}
+
+button.btn-edit {
+  background-color: var(--color-white);
+  color: var(--color-accent);
+}
+
+button.btn-edit:hover,
+button.btn-edit:focus,
+button.btn-edit:active {
+  background-color: var(--color-accent-light);
+  color: var(--color-accent);
 }

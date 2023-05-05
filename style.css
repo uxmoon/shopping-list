@@ -1,3 +1,9 @@
+:root {
+  --color-black: #222222;
+}
+/* A Modern CSS Reset
+ * https://andy-bell.co.uk/a-modern-css-reset/
+ */
 *,
 *::before,
 *::after {
@@ -70,6 +76,23 @@ select {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+h1 {
+  text-align: center;
+}
+
+footer {
+  text-align: center;
+}
+
+footer a {
+  color: var(--color-black);
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
 }
 
 .container {

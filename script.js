@@ -4,6 +4,7 @@ const inputAdd = document.getElementById('item-input')
 const list = document.getElementById('item-list')
 const btnClear = document.getElementById('clear')
 const itemsFilter = document.getElementById('filter')
+const filterWrapper = document.querySelector('.filter')
 let isEditMode = false
 
 function displayItems() {
@@ -154,10 +155,12 @@ function resetUI() {
   const items = document.querySelectorAll('li')
   if (items.length === 0) {
     btnClear.style.display = 'none'
-    itemsFilter.style.display = 'none'
+    filterWrapper.style.display = 'none'
+    list.classList.remove('border')
   } else {
     btnClear.style.display = 'block'
-    itemsFilter.style.display = 'block'
+    filterWrapper.style.display = 'block'
+    list.classList.add('border')
   }
   formButton.innerHTML = '&plus; Add item'
   formButton.classList.remove('btn-edit')
@@ -184,10 +187,8 @@ function filterItems(e) {
     const itemText = item.firstChild.textContent.toLowerCase()
     // compare text input and list item text, returns true or false
     if (itemText.indexOf(text) != -1) {
-      // console.log('true')
       item.style.display = 'flex'
     } else {
-      // console.log('false')
       item.style.display = 'none'
     }
   })
